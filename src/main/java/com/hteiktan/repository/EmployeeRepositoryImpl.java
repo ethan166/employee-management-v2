@@ -19,6 +19,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	
 	@PostConstruct
 	public void initializer() {
+		// where we connect to database
 		EmployeeDTO employeeDTO = new EmployeeDTO();
 		employeeDTO.setEmpId(101);
 		employeeDTO.setEmpName("Jack");
