@@ -100,22 +100,30 @@ public class EmployeeEntity {
 	public void setAddress(AddressEntity address) {
 		this.address = address;
 	}
-//	
-//	@Override
-//	public String toString() {
-//		return "Employee [Name=" + empName + ", Department=" + department +
-//				", Base Location=" + baseLocation + ", Address=" + address + "]";
-//	}
-//	
-//	
-//	public static EmployeeDTO prepareEmployeeDTO(Employee employee) {
-//		EmployeeDTO employeeDTO = new EmployeeDTO();
-//		employeeDTO.setAddress(employee.getAddress());
-//		employeeDTO.setBaseLocation(employee.getBaseLocation());
-//		employeeDTO.setDepartment(employee.getDepartment());
-//		employeeDTO.setEmpName(employee.getEmpName());
-//		employeeDTO.setEmpId(employee.getEmpId());
-//		return employeeDTO;
-//	}
+	
+	@Override
+	public String toString() {
+		return "Employee [Name=" + empName + ", Department=" + department +
+				", Address= [Street Name" + address.getStreetName() +  ", City= " + address.getCity() + "]";
+	}
+	
+	
+	public static EmployeeDTO prepareEmployeeDTO(EmployeeEntity emp) {
+		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setCity(emp.getAddress().getCity());
+		addressDTO.setPincode(emp.getAddress().getPincode());
+		addressDTO.setStreetName(emp.getAddress().getStreetName());
+		
+		EmployeeDTO empDTO = new EmployeeDTO();
+		empDTO.setAddress(addressDTO);
+		empDTO.setDepartment(emp.getDepartment());
+		empDTO.setEmpName(emp.getEmpName());
+		empDTO.setAge(emp.getAge());
+		empDTO.setGender(emp.getGender());
+		empDTO.setStartDate(emp.getStartDate());
+		empDTO.setEndDate(emp.getEndDate());
+		
+		return empDTO;
+	}
 
 }

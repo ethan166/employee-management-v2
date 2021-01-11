@@ -1,5 +1,6 @@
 package com.hteiktan.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hteiktan.dto.EmployeeDTO;
+import com.hteiktan.entity.EmployeeEntity;
 import com.hteiktan.repository.EmployeeRepository;
 import com.hteiktan.repository.EmployeeRepositoryImpl;
 
@@ -18,17 +20,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeDAO;
 	
-	
+	@Override
 	public void insert(EmployeeDTO emp) {
-		employeeDAO.insertEmployee(emp);
+		
+		employeeDAO.insertEmployee(EmployeeDTO.prepareEmployeeEntity(emp));
 	}
-
+	@Override
 	public void delete(int empId) {
 		employeeDAO.removeEmployee(empId);
 	}
-
+	@Override
 	public List<EmployeeDTO> getAllEmployee() {
-		return employeeDAO.fetchEmployee();
+		List<EmployeeDTO> empList = new ArrayList<>();
+		List<EmployeeEntity> empEntityList = employeeDAO.fetchEmployee();
+		for(EmployeeEntity empEntity: empEntityList) {
+			EmployeeDTO empDTO = EmployeeEntity.prepareEmployeeDTO(empEntity);
+			empList.add(empDTO);
+		}
+		return empList;
 	}
 	
 

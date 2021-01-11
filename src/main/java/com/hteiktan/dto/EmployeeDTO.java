@@ -1,6 +1,7 @@
 package com.hteiktan.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.hteiktan.entity.AddressEntity;
+import com.hteiktan.entity.EmployeeEntity;
 
 public class EmployeeDTO {
 	private int empId;
@@ -68,5 +70,27 @@ public class EmployeeDTO {
 		this.department = department;
 	}
 	
+	@Override
+	public String toString() {
+		return "Employee [Name=" + empName + ", Department=" + department +
+				", Address= [Street Name" + address.getStreetName() +  ", City= " + address.getCity() + "]";
+	}
+	public static EmployeeEntity prepareEmployeeEntity(EmployeeDTO emp) {
+		AddressEntity addressEntity = new AddressEntity();
+		addressEntity.setCity(emp.getAddress().getCity());
+		addressEntity.setPincode(emp.getAddress().getPincode());
+		addressEntity.setStreetName(emp.getAddress().getStreetName());
+		
+		EmployeeEntity empEntity = new EmployeeEntity();
+		empEntity.setAddress(addressEntity);
+		empEntity.setDepartment(emp.getDepartment());
+		empEntity.setEmpName(emp.getEmpName());
+		empEntity.setAge(emp.getAge());
+		empEntity.setGender(emp.getGender());
+		empEntity.setStartDate(emp.getStartDate());
+		empEntity.setEndDate(emp.getEndDate());
+		
+		return empEntity;
+	}
 	
 }

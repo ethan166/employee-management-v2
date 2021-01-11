@@ -42,17 +42,16 @@ public class EmployeeManagementV2Application {
 		employee2.setGender("Female");
 		employee2.setStartDate(LocalDate.of(2020, 8, 23));
 		
-//		EmployeeDTO employee3 = new EmployeeDTO();
-//		employee3.setAddress(address1);
-//		employee3.setDepartment("Management");
-//		employee3.setEmpName("MiBote");
-		
-		service.insert(employee1);
-		service.insert(employee2);
-		System.out.println("Employees Added Successfully!");
-
-//		service.insert(employee3);
 	
+		//service.insert(employee1);
+		//service.insert(employee2);
+		//System.out.println("Employees Added Successfully!");
+		System.out.println("Employee Lists");
+		List<EmployeeDTO> empList = service.getAllEmployee();
+		for(EmployeeDTO emp : empList) {
+			System.out.println(emp.toString());
+		}
+
 	}
 
 }
