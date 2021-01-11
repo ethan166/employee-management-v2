@@ -11,7 +11,7 @@ CREATE TABLE Employee(
    Age INT(11) NOT NULL,
    Gender VARCHAR(255) NOT NULL,
    StartDate VARCHAR(255) NOT NULL,
-   EndDate VARCHAR(255) NULL
+   EndDate VARCHAR(255) NULL,
    Salary INT(11) NOT NULL,
    Address INT(11) null,
    CONSTRAINT Emp_FK Foreign key (Address) REFERENCES Address(AddressId)
