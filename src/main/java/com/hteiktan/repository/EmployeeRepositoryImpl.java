@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-
+import com.hteiktan.entity.AddressEntity;
 import com.hteiktan.entity.EmployeeEntity;
 
 @Repository("employeeRepository")
@@ -40,6 +40,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			EmployeeEntity emp = entityManager.find(EmployeeEntity.class, empId);
 			entityManager.remove(emp);
 			entityManager.getTransaction().commit();
+			result = 1;
 			
 		} catch (Exception exp) {
 			entityManager.getTransaction().rollback();
@@ -56,8 +57,15 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	    //return result;
 		Query query = entityManager.createQuery("Select e from EmployeeEntity e");
 		return (List<EmployeeEntity>) query.getResultList();
-		
-		
 	}
+    
+    @Override
+    public void update(int empId, AddressEntity address) {
+    	EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+    	entityManager.getTransaction().begin();
+    	EmployeeEntity emp = entityManager.find(EmployeeEntity.class, empId);
+    	emp.setAddress(address);
+    	entityManager.getTransaction().commit();
+    }
 }
 

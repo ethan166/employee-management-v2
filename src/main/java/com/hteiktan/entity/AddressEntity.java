@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.hteiktan.dto.AddressDTO;
+
 @Entity
 @Table(name="address")
 @GenericGenerator(name = "gen", strategy = "increment")
@@ -62,5 +64,13 @@ public class AddressEntity {
 	}
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+	
+	public static AddressDTO prepareAddressDTO(AddressEntity addressEntity) {
+		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setCity(addressEntity.getCity());
+		addressDTO.setPincode(addressEntity.getPincode());
+		addressDTO.setStreetName(addressEntity.getStreetName());
+		return addressDTO;
 	}
 }

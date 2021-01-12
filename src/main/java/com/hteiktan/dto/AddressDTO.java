@@ -1,5 +1,7 @@
 package com.hteiktan.dto;
 
+import com.hteiktan.entity.AddressEntity;
+
 public class AddressDTO {
 	private int addressId;
 	private String streetName;
@@ -41,5 +43,12 @@ public class AddressDTO {
 		this.pincode = pincode;
 	}
 	
+	public static AddressEntity prepareAddressEntity(AddressDTO addressDTO) {
+		AddressEntity addressEntity = new AddressEntity();
+		addressEntity.setCity(addressDTO.getCity());
+		addressEntity.setStreetName(addressDTO.getStreetName());
+		addressEntity.setPincode(addressDTO.getPincode());
+		return addressEntity;
+	}
 
 }

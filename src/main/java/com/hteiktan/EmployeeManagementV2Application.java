@@ -45,12 +45,33 @@ public class EmployeeManagementV2Application {
 	
 		//service.insert(employee1);
 		//service.insert(employee2);
-		//System.out.println("Employees Added Successfully!");
+		System.out.println("Employees Added Successfully!");
 		System.out.println("Employee Lists");
 		List<EmployeeDTO> empList = service.getAllEmployee();
 		for(EmployeeDTO emp : empList) {
 			System.out.println(emp.toString());
 		}
+		
+		//service.delete(15);
+	
+//		
+//		if(service.delete(4) == 1) {
+//			System.out.println("Employee Successfully Deleted!");
+//		}
+	
+		AddressDTO newAddress = new AddressDTO();
+		newAddress.setCity("Meikhtila");
+		newAddress.setStreetName("Mandalay Road");
+		newAddress.setPincode("MKH123");
+		
+		service.updateEmpAddress(1, newAddress);
+		
+		System.out.println("Employee Lists");
+		List<EmployeeDTO> empList2 = service.getAllEmployee();
+		for(EmployeeDTO emp : empList2) {
+			System.out.println(emp.toString());
+		}
+		
 
 	}
 
