@@ -2,6 +2,7 @@ package com.hteiktan.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,7 +13,7 @@ import com.hteiktan.dto.EmployeeDTO;
 import com.hteiktan.entity.AddressEntity;
 import com.hteiktan.entity.EmployeeEntity;
 import com.hteiktan.repository.EmployeeRepository;
-import com.hteiktan.repository.EmployeeRepositoryImpl;
+
 
 @Service("employeeService")
 @Scope("prototype")
@@ -24,26 +25,30 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public void insert(EmployeeDTO emp) {
-		
-		employeeDAO.insertEmployee(EmployeeDTO.prepareEmployeeEntity(emp));
+		employeeDAO.saveAndFlush(EmployeeDTO.prepareEmployeeEntity(emp));
+		//employeeDAO.insertEmployee(EmployeeDTO.prepareEmployeeEntity(emp));
 	}
 	@Override
-	public int delete(int empId) {
-		return employeeDAO.removeEmployee(empId);
+	public void delete(int empId) {
+		//return employeeDAO.removeEmployee(empId);
+		employeeDAO.deleteById(empId);
 	}
-	@Override
-	public List<EmployeeDTO> getAllEmployee() {
+ 	public List<EmployeeDTO> getAllEmployee() {
 		List<EmployeeDTO> empList = new ArrayList<>();
-		List<EmployeeEntity> empEntityList = employeeDAO.fetchEmployee();
+		List<EmployeeEntity> empEntityList = employeeDAO.findAll();
 		for(EmployeeEntity empEntity: empEntityList) {
 			EmployeeDTO empDTO = EmployeeEntity.prepareEmployeeDTO(empEntity);
-			empList.add(empDTO);
+			empList.add(empDTO  );
 		}
 		return empList;
 	}
 	@Override
 	public void updateEmpAddress(int empId, AddressDTO addressDTO) {
-		employeeDAO.update(empId, AddressDTO.prepareAddressEntity(addressDTO));
+		Optional<EmployeeEntity> optionalEmployee = employeeDAO.findById(empId);
+		EmployeeEntity employeeEntity = optionalEmployee.get();
+		employeeEntity.setAddress(AddressDTO.prepareAddressEntity(addressDTO));
+		employeeDAO.save(employeeEntity);
+		//employeeDAO.update(empId, AddressDTO.prepareAddressEntity(addressDTO));
 	}
 		
 		 

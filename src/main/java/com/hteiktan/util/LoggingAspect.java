@@ -23,44 +23,44 @@ import com.hteiktan.dto.EmployeeDTO;
 public class LoggingAspect {
 	private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	@AfterThrowing("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
-	public void logAfterThrowingAdvice(JoinPoint joinPoint) {
-		logger.info("In After throwing Advice,Joinpoint signature : {}", joinPoint.getSignature());
-	}
-	
-	@AfterThrowing(pointcut = "execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))", throwing = "exception")
-	public void logAfterThrowingAdviceDetails(JoinPoint joinPoint, Exception exception) {
-		logger.info("In After throwing Advice details,Joinpoint signature : {}", joinPoint.getSignature());
-		logger.error(exception.getMessage(), exception);
-	}
-	
-	@After("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
-	public void logAfterAdvice(JoinPoint joinPoint)
-	{
-		logger.info("In After Advice, Joinpoint signature : {}", joinPoint.getSignature());
-		long time = System.currentTimeMillis();
-		String date = DateFormat.getDateTimeInstance().format(time);
-		logger.info("Report generated at time{}", date);
-				
-	}
-	
-	@Before("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
-	public void logBeforeAdvice(JoinPoint joinPoint) {
-		logger.info("In Before Advice, Joinpoint signature : {}", joinPoint.getSignature());
-		long time = System.currentTimeMillis();
-		String date = DateFormat.getDateTimeInstance().format(time);
-		logger.info("Report generated at time{}", date);
-	}
-	
-	@AfterReturning(pointcut = "execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))", returning="result")
-	public void logAfterReturningDetails(JoinPoint joinPoint, List<EmployeeDTO> result)
-	{
-		logger.info("In AfterReturning Advice with return value, Joinpoint: {}", joinPoint.getSignature());
-		System.out.println(result);
-		long time = System.currentTimeMillis();
-		String date = DateFormat.getDateTimeInstance().format(time);
-		logger.info("Report generated at time:{}", date);
-	}
+//	@AfterThrowing("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
+//	public void logAfterThrowingAdvice(JoinPoint joinPoint) {
+//		logger.info("In After throwing Advice,Joinpoint signature : {}", joinPoint.getSignature());
+//	}
+//	
+//	@AfterThrowing(pointcut = "execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))", throwing = "exception")
+//	public void logAfterThrowingAdviceDetails(JoinPoint joinPoint, Exception exception) {
+//		logger.info("In After throwing Advice details,Joinpoint signature : {}", joinPoint.getSignature());
+//		logger.error(exception.getMessage(), exception);
+//	}
+//	
+//	@After("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
+//	public void logAfterAdvice(JoinPoint joinPoint)
+//	{
+//		logger.info("In After Advice, Joinpoint signature : {}", joinPoint.getSignature());
+//		long time = System.currentTimeMillis();
+//		String date = DateFormat.getDateTimeInstance().format(time);
+//		logger.info("Report generated at time{}", date);
+//				
+//	}
+//	
+//	@Before("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
+//	public void logBeforeAdvice(JoinPoint joinPoint) {
+//		logger.info("In Before Advice, Joinpoint signature : {}", joinPoint.getSignature());
+//		long time = System.currentTimeMillis();
+//		String date = DateFormat.getDateTimeInstance().format(time);
+//		logger.info("Report generated at time{}", date);
+//	}
+//	
+//	@AfterReturning(pointcut = "execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))", returning="result")
+//	public void logAfterReturningDetails(JoinPoint joinPoint, List<EmployeeDTO> result)
+//	{
+//		logger.info("In AfterReturning Advice with return value, Joinpoint: {}", joinPoint.getSignature());
+//		System.out.println(result);
+//		long time = System.currentTimeMillis();
+//		String date = DateFormat.getDateTimeInstance().format(time);
+//		logger.info("Report generated at time:{}", date);
+//	}
 	
 	@Around("execution(* com.hteiktan.service.EmployeeServiceImpl.getAllEmployee(..))")
 	public Object logAroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {

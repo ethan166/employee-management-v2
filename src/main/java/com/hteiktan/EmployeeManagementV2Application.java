@@ -43,8 +43,8 @@ public class EmployeeManagementV2Application {
 		employee2.setStartDate(LocalDate.of(2020, 8, 23));
 		
 	
-		//service.insert(employee1);
-		//service.insert(employee2);
+		service.insert(employee1);
+		service.insert(employee2);
 		System.out.println("Employees Added Successfully!");
 		System.out.println("Employee Lists");
 		List<EmployeeDTO> empList = service.getAllEmployee();
