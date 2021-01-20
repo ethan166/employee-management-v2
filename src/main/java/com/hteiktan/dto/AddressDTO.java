@@ -5,14 +5,15 @@ import com.hteiktan.entity.AddressEntity;
 public class AddressDTO {
 	private int addressId;
 	private String streetName;
+	
+	private String city;
+	private String pincode;
 	public String getStreetName() {
 		return streetName;
 	}
 	public void setStreetName(String streetName) {
 		this.streetName = streetName;
 	}
-	private String city;
-	private String pincode;
 	
 	public AddressDTO() {
 		
