@@ -68,6 +68,7 @@ public class AddressEntity {
 	
 	public static AddressDTO prepareAddressDTO(AddressEntity addressEntity) {
 		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setAddressId(addressEntity.getAddressId());
 		addressDTO.setCity(addressEntity.getCity());
 		addressDTO.setPincode(addressEntity.getPincode());
 		addressDTO.setStreetName(addressEntity.getStreetName());
