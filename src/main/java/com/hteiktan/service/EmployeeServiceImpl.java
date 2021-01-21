@@ -30,12 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	@Override
 	public void delete(int empId) {
-		//return employeeDAO.removeEmployee(empId);
+		//employeeDAO.removeEmployee(empId);
 		employeeDAO.deleteById(empId);
 	}
  	public List<EmployeeDTO> getAllEmployee() {
 		List<EmployeeDTO> empList = new ArrayList<>();
 		List<EmployeeEntity> empEntityList = employeeDAO.findAll();
+		//List<EmployeeEntity> empEntityList = employeeDAO.fetchEmployee();
 		for(EmployeeEntity empEntity: empEntityList) {
 			EmployeeDTO empDTO = EmployeeEntity.prepareEmployeeDTO(empEntity);
 			empList.add(empDTO  );

@@ -110,11 +110,13 @@ public class EmployeeEntity {
 	
 	public static EmployeeDTO prepareEmployeeDTO(EmployeeEntity emp) {
 		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setAddressId(emp.getAddress().getAddressId());
 		addressDTO.setCity(emp.getAddress().getCity());
 		addressDTO.setPincode(emp.getAddress().getPincode());
 		addressDTO.setStreetName(emp.getAddress().getStreetName());
 		
 		EmployeeDTO empDTO = new EmployeeDTO();
+		empDTO.setEmpId(emp.getEmpId());
 		empDTO.setAddress(addressDTO);
 		empDTO.setDepartment(emp.getDepartment());
 		empDTO.setEmpName(emp.getEmpName());
