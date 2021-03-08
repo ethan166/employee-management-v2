@@ -47,21 +47,31 @@ public class EmployeeController {
 	}
 	
 	@PutMapping(value = "/{empId}", consumes = "application/json")
-	public ResponseEntity<String> updateEmpAddress(@PathVariable("empId") int empId, @RequestBody AddressDTO addressDTO) 
+	public ResponseEntity<Void> updateEmpAddress(@PathVariable("empId") int empId, @RequestBody AddressDTO addressDTO) 
 	{
-		String response = "Employee Address Updated Successfully";
-		empService.updateEmpAddress(empId, addressDTO);
-		return ResponseEntity.ok(response);
+		try {
+			empService.updateEmpAddress(empId, addressDTO);
+			return ResponseEntity.ok().build();
+		} catch (Exception ex) {
+			return ResponseEntity.notFound().build();
+		}
+	//	String response = "Employee Address Updated Successfully";
+		
+	
 	}
 	
 	//Deleting a customer
 	@DeleteMapping("/{empId}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable("empId") int empId) 
+	public ResponseEntity<Void> deleteCustomer(@PathVariable("empId") int empId) 
 	{
-		String response = "Employee Deleted Successfully";
-		
-		 empService.delete(empId);
-		 return ResponseEntity.ok(response);
+		//String response = "Employee Deleted Successfully";
+		try {
+			 empService.delete(empId);
+			 return ResponseEntity.ok().build();
+		}catch (Exception ex) {
+			return ResponseEntity.notFound().build();
+		}	 
+		// return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	
 	

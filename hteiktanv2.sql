@@ -13,5 +13,6 @@ CREATE TABLE employee(
    address INT(11) null,
    start_date DATE NOT NULL,
    end_date DATE null,
+   successMessage
    CONSTRAINT Emp_FK Foreign key (address) REFERENCES address(address_id)
 );
