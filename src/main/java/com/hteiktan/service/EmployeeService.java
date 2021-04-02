@@ -10,4 +10,5 @@ public interface EmployeeService {
 	public void delete(int empId);
 	public List<EmployeeDTO> getAllEmployee();
 	public void updateEmpAddress(int empId, AddressDTO addressDTO);
+	public List<EmployeeDTO> findByName(String name);
 }

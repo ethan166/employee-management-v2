@@ -9,7 +9,7 @@ import com.hteiktan.entity.AddressEntity;
 import com.hteiktan.entity.EmployeeEntity;
 
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer>  {
-
+	List<EmployeeEntity> findByempName(String name);
 }
 
 

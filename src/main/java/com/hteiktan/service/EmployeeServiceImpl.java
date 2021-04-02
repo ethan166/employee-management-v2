@@ -51,6 +51,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDAO.save(employeeEntity);
 		//employeeDAO.update(empId, AddressDTO.prepareAddressEntity(addressDTO));
 	}
+	@Override
+	public List<EmployeeDTO> findByName(String name) {
+		List<EmployeeDTO> empList = new ArrayList<>();
+		List<EmployeeEntity> empEntityList = employeeDAO.findByempName(name);
+		//List<EmployeeEntity> empEntityList = employeeDAO.fetchEmployee();
+		for(EmployeeEntity empEntity: empEntityList) {
+			EmployeeDTO empDTO = EmployeeEntity.prepareEmployeeDTO(empEntity);
+			empList.add(empDTO);
+		}
+		return empList;
+	}
 		
 		 
 	
