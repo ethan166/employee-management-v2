@@ -16,19 +16,21 @@ import com.hteiktan.dto.AddressDTO;
 @GenericGenerator(name = "gen", strategy = "increment")
 public class AddressEntity {
 	@Id
-	@Column(name="address_id")
+	@Column
 	@GeneratedValue(generator = "gen")
 	private int addressId;
-	@Column(name="street_name")
+	@Column
 	private String streetName;
+	@Column
 	private String city;
+	@Column
 	private String pincode;
-	public AddressEntity() {
-		
-	}
-
 	
-	public AddressEntity(int addressId, String streetName, String city, String pincode) {
+	public AddressEntity() {
+	}
+	
+	
+	public AddressEntity(String streetName, String city, String pincode) {
 		super();
 		this.addressId = addressId;
 		this.streetName = streetName;

@@ -11,4 +11,6 @@ public interface EmployeeService {
 	public List<EmployeeDTO> getAllEmployee();
 	public void updateEmpAddress(int empId, AddressDTO addressDTO);
 	public List<EmployeeDTO> findByName(String name);
+	public void saveAll(List<EmployeeDTO> empList);
+	
 }

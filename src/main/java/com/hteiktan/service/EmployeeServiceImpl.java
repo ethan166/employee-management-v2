@@ -25,9 +25,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public void insert(EmployeeDTO emp) {
-		employeeDAO.saveAndFlush(EmployeeDTO.prepareEmployeeEntity(emp));
+		employeeDAO.save(EmployeeDTO.prepareEmployeeEntity(emp));
+		//employeeDAO.saveAndFlush(EmployeeDTO.prepareEmployeeEntity(emp));
 		//employeeDAO.insertEmployee(EmployeeDTO.prepareEmployeeEntity(emp));
 	}
+	@Override
+	public void saveAll(List<EmployeeDTO> empDTOList) {
+		List<EmployeeEntity> empEntityList = new ArrayList<>();
+		
+		//DTO list to entityList
+		for(EmployeeDTO empDTO: empDTOList) {
+			empEntityList.add(EmployeeDTO.prepareEmployeeEntity(empDTO));
+		}
+		
+		employeeDAO.saveAll(empEntityList);
+	}
+	
 	@Override
 	public void delete(int empId) {
 		//employeeDAO.removeEmployee(empId);
@@ -35,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
  	public List<EmployeeDTO> getAllEmployee() {
 		List<EmployeeDTO> empList = new ArrayList<>();
-		List<EmployeeEntity> empEntityList = employeeDAO.findAll();
+		List<EmployeeEntity> empEntityList = (List<EmployeeEntity>) employeeDAO.findAll();
 		//List<EmployeeEntity> empEntityList = employeeDAO.fetchEmployee();
 		for(EmployeeEntity empEntity: empEntityList) {
 			EmployeeDTO empDTO = EmployeeEntity.prepareEmployeeDTO(empEntity);
@@ -54,7 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<EmployeeDTO> findByName(String name) {
 		List<EmployeeDTO> empList = new ArrayList<>();
-		List<EmployeeEntity> empEntityList = employeeDAO.findByempName(name);
+		List<EmployeeEntity> empEntityList = employeeDAO.findByfirstname(name);
 		//List<EmployeeEntity> empEntityList = employeeDAO.fetchEmployee();
 		for(EmployeeEntity empEntity: empEntityList) {
 			EmployeeDTO empDTO = EmployeeEntity.prepareEmployeeDTO(empEntity);
@@ -62,10 +75,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		return empList;
 	}
-		
-		 
 	
-	
+//	Pageable requestedPage = PageRequest.of(0, 5);
+//	Page<Customer> customers  = customerRepository.findAll(requestedPage);
+
 	
 
 }

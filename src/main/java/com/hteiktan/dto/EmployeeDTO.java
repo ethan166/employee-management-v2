@@ -13,12 +13,58 @@ import com.hteiktan.entity.EmployeeEntity;
 
 public class EmployeeDTO {
 	private int empId;
-	private String empName;
+	private String firstname;
+	private String lastname;
 	private String department;
 	private int age;
 	private String gender;
+	private double salary;
 	private LocalDate startDate;
 	private LocalDate endDate;
+	
+	public EmployeeDTO() {
+		
+	}
+	public EmployeeDTO(String firstname, String lastname, String department, int age, String gender,
+			LocalDate startDate, LocalDate endDate, double salary , AddressDTO address) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.department = department;
+		this.age = age;
+		this.gender = gender;
+		this.salary = salary;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.address = address;
+
+	}
+
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
 	private AddressDTO address;
 
 	private String successMessage;
@@ -87,13 +133,7 @@ public class EmployeeDTO {
 		this.empId = empId;
 	}
 
-	public String getEmpName() {
-		return empName;
-	}
 
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
 
 	public String getDepartment() {
 		return department;
@@ -105,7 +145,7 @@ public class EmployeeDTO {
 
 	@Override
 	public String toString() {
-		return "Employee [Name=" + empName + ", Department=" + department + ", Address= [Street Name"
+		return "Employee [Name=" + firstname + " " + lastname + ", Department=" + department + ", Address= [Street Name"
 				+ address.getStreetName() + ", City= " + address.getCity() + "]";
 	}
 
@@ -118,12 +158,13 @@ public class EmployeeDTO {
 		EmployeeEntity empEntity = new EmployeeEntity();
 		empEntity.setAddress(addressEntity);
 		empEntity.setDepartment(emp.getDepartment());
-		empEntity.setEmpName(emp.getEmpName());
+		empEntity.setFirstname(emp.getFirstname());
+		empEntity.setLastname(emp.getLastname());
 		empEntity.setAge(emp.getAge());
 		empEntity.setGender(emp.getGender());
 		empEntity.setStartDate(emp.getStartDate());
 		empEntity.setEndDate(emp.getEndDate());
-
+		empEntity.setSalary(emp.getSalary());
 		return empEntity;
 	}
 

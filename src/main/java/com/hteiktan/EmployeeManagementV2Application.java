@@ -1,26 +1,39 @@
 package com.hteiktan;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import com.hteiktan.dto.EmployeeDTO;
+import com.hteiktan.entity.AddressEntity;
+import com.hteiktan.repository.EmployeeRepository;
+import com.hteiktan.service.EmployeeService;
 import com.hteiktan.service.EmployeeServiceImpl;
 import com.hteiktan.dto.AddressDTO;
 
 @SpringBootApplication
-public class EmployeeManagementV2Application {
+public class EmployeeManagementV2Application implements CommandLineRunner {
 	
-	public static void main(String[] args) {
+	
+	@Autowired
+	private EmployeeService empService;
+	
+	
+	public static void main(String[] args){
 		
 		
 		SpringApplication.run(EmployeeManagementV2Application.class, args);
-//		EmployeeServiceImpl service = null;
-//		AbstractApplicationContext context = (AbstractApplicationContext)SpringApplication.run(EmployeeManagementV2Application.class, args);
-//		service = (EmployeeServiceImpl) context.getBean("employeeService");
+		
+		
+	//	EmployeeServiceImpl service = null;
+	//	AbstractApplicationContext context = (AbstractApplicationContext)SpringApplication.run(EmployeeManagementV2Application.class, args);
+	//	service = (EmployeeServiceImpl) context.getBean("employeeService");
 //		
 //		AddressDTO address1 = new AddressDTO();
 //		address1.setCity("Mandalay");
@@ -76,6 +89,27 @@ public class EmployeeManagementV2Application {
 //		}
 //		
 //
+	}
+	
+	@Override
+	public void run(String... args) throws Exception {
+//		AbstractApplicationContext context = (AbstractApplicationContext)SpringApplication.run(EmployeeManagementV2Application.class, args);
+//		EmployeeService service = (EmployeeServiceImpl) context.getBean("employeeService");
+//		
+
+		List<EmployeeDTO> employees = Arrays.asList(	new EmployeeDTO("Kyaw", "Tun", "Admin", 28, "male", LocalDate.of(2020, 8, 23), LocalDate.of(2021, 8, 23), 75000.0, new AddressDTO("1402 E 69th" , "Tacoma", "98404")),
+							new EmployeeDTO("Moh Moh", "Win", "wife of admin", 28, "male", LocalDate.of(2020, 8, 23), LocalDate.of(2020, 8, 23), 75000.0,new AddressDTO("1402 E 69th" , "Tacoma", "98404")),
+							new EmployeeDTO("Mini", "Boo", "Dog", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 4500.0, new AddressDTO("12213 69th" , "Pullayup", "98404")),
+							new EmployeeDTO("Bo Bo", "Win", "Server", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 5000.0, new AddressDTO("12213 69th" , "Bellevue", "98404")),
+							new EmployeeDTO("Ni Ni", "Win", "Admin", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 60000.0, new AddressDTO("12213 69th" , "Federal Way", "99833")),
+							new EmployeeDTO("Mar Mar", "Win", "Operation", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 45000.0, new AddressDTO("12213 69th" , "Kent", "99232")),
+							new EmployeeDTO("Marlar", "Tun", "Operation", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 70000.0, new AddressDTO("12213 69th" , "Pullayup", "98404")),
+							new EmployeeDTO("Kyaw Kyaw", "Boo", "Service", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 9900.0, new AddressDTO("12213 69th" , "Lacey", "98404")),
+							new EmployeeDTO("T T", "Win", "Service", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 33440.0, new AddressDTO("12213 69th" , "Portland", "98404"))
+				);
+		
+	 empService.saveAll(employees);
+
 	}
 
 }

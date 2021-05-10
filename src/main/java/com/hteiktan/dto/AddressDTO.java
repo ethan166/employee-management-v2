@@ -18,9 +18,9 @@ public class AddressDTO {
 	public AddressDTO() {
 		
 	}
-	public AddressDTO(int addressId, String city, String pincode) {
+	public AddressDTO(String streetName, String city, String pincode) {
 		super();
-		this.addressId = addressId;
+		this.streetName = streetName;
 		this.city = city;
 		this.pincode = pincode;
 	}

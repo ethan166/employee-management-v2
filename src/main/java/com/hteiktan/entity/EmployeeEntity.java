@@ -19,35 +19,70 @@ import com.hteiktan.dto.EmployeeDTO;
 @Table(name="employee")
 public class EmployeeEntity {
 	@Id
-	@Column(name ="emp_id")
+	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int empId;
-	@Column(name="employee_name")
-    private String empName;
+	@Column
+    private String firstname;
+	
+	@Column
+	private String lastname;
+	
+	@Column
     private String department;
+	
+	@Column
 	private int age;
+	
+	@Column
     private String gender;
-    @Column(name="start_date")
+	
+    @Column
     private LocalDate startDate;
-    @Column(name="end_date")
+    
+    @Column
     private LocalDate endDate;
+    
+    @Column
+    private double salary;
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id", unique=true)
     private AddressEntity address;
+    
     public EmployeeEntity() {
     	
     }
-    public EmployeeEntity(int empId, String empName, String department, int age, String gender, LocalDate startDate,
-			LocalDate endDate, AddressEntity address) {
+    public EmployeeEntity(String firstname, String lastname, String department, int age, String gender, LocalDate startDate,
+			LocalDate endDate, double salary, AddressEntity address) {
 		super();
-		this.empId = empId;
-		this.empName = empName;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.department = department;
 		this.age = age;
 		this.gender = gender;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.salary = salary;
 		this.address = address;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
 	}
 	public int getAge() {
 		return age;
@@ -79,12 +114,6 @@ public class EmployeeEntity {
 	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
-	public String getEmpName() {
-		return empName;
-	}
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
 	public String getDepartment() {
 		return department;
 	}
@@ -103,7 +132,7 @@ public class EmployeeEntity {
 	
 	@Override
 	public String toString() {
-		return "Employee [Name=" + empName + ", Department=" + department +
+		return "Employee [Name=" + firstname + " " +  lastname + ", Department=" + department +
 				", Address= [Street Name" + address.getStreetName() +  ", City= " + address.getCity() + "]";
 	}
 	
@@ -117,13 +146,15 @@ public class EmployeeEntity {
 		
 		EmployeeDTO empDTO = new EmployeeDTO();
 		empDTO.setEmpId(emp.getEmpId());
+		empDTO.setFirstname(emp.getFirstname());
+		empDTO.setLastname(emp.getLastname());
 		empDTO.setAddress(addressDTO);
 		empDTO.setDepartment(emp.getDepartment());
-		empDTO.setEmpName(emp.getEmpName());
 		empDTO.setAge(emp.getAge());
 		empDTO.setGender(emp.getGender());
 		empDTO.setStartDate(emp.getStartDate());
 		empDTO.setEndDate(emp.getEndDate());
+		empDTO.setSalary(emp.getSalary());
 		
 		return empDTO;
 	}
