@@ -32,7 +32,6 @@ public class AddressEntity {
 	
 	public AddressEntity(String streetName, String city, String pincode) {
 		super();
-		this.addressId = addressId;
 		this.streetName = streetName;
 		this.city = city;
 		this.pincode = pincode;

@@ -97,15 +97,16 @@ public class EmployeeManagementV2Application implements CommandLineRunner {
 //		EmployeeService service = (EmployeeServiceImpl) context.getBean("employeeService");
 //		
 
-		List<EmployeeDTO> employees = Arrays.asList(	new EmployeeDTO("Kyaw", "Tun", "Admin", 28, "male", LocalDate.of(2020, 8, 23), LocalDate.of(2021, 8, 23), 75000.0, new AddressDTO("1402 E 69th" , "Tacoma", "98404")),
-							new EmployeeDTO("Moh Moh", "Win", "wife of admin", 28, "male", LocalDate.of(2020, 8, 23), LocalDate.of(2020, 8, 23), 75000.0,new AddressDTO("1402 E 69th" , "Tacoma", "98404")),
-							new EmployeeDTO("Mini", "Boo", "Dog", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 4500.0, new AddressDTO("12213 69th" , "Pullayup", "98404")),
-							new EmployeeDTO("Bo Bo", "Win", "Server", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 5000.0, new AddressDTO("12213 69th" , "Bellevue", "98404")),
-							new EmployeeDTO("Ni Ni", "Win", "Admin", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 60000.0, new AddressDTO("12213 69th" , "Federal Way", "99833")),
-							new EmployeeDTO("Mar Mar", "Win", "Operation", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 45000.0, new AddressDTO("12213 69th" , "Kent", "99232")),
-							new EmployeeDTO("Marlar", "Tun", "Operation", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 70000.0, new AddressDTO("12213 69th" , "Pullayup", "98404")),
-							new EmployeeDTO("Kyaw Kyaw", "Boo", "Service", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 9900.0, new AddressDTO("12213 69th" , "Lacey", "98404")),
-							new EmployeeDTO("T T", "Win", "Service", 28, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 33440.0, new AddressDTO("12213 69th" , "Portland", "98404"))
+		List<EmployeeDTO> employees = Arrays.asList(	new EmployeeDTO("Kyaw", "Tun", "Management", 28, "male", LocalDate.of(2020, 8, 23), LocalDate.of(2021, 8, 23), 75000.0, new AddressDTO("1402 E 69th" , "Tacoma", "98404")),
+							new EmployeeDTO("Moh Moh", "Win", "Management", 30, "male", LocalDate.of(2020, 8, 23), LocalDate.of(2020, 8, 23), 75000.0,new AddressDTO("1402 E 69th" , "Tacoma", "98404")),
+							new EmployeeDTO("Mini", "Boo", "Kitchen", 1, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 5000.0, new AddressDTO("12213 69th" , "Pullayup", "98404")),
+							new EmployeeDTO("Bo Bo", "Win", "Service", 18, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 5000.0, new AddressDTO("12213 69th" , "Bellevue", "98404")),
+							//new EmployeeDTO("Ni Ni", "Win", "Kitchen", 18, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 60000.0, new AddressDTO("12213 69th" , "Federal Way", "99833")),
+							//new EmployeeDTO("Mar Mar", "Win", "Service", 21, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 45000.0, new AddressDTO("12213 69th" , "Kent", "99232")),
+							//new EmployeeDTO("Marlar", "Tun", "Service", 22, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 70000.0, new AddressDTO("12213 69th" , "Pullayup", "98404")),
+							new EmployeeDTO("Kyaw Kyaw", "Boo", "Service", 25, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 45000.0, new AddressDTO("12213 69th" , "Lacey", "98404")),
+							//new EmployeeDTO("T T", "Win", "Service", 32, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 33440.0, new AddressDTO("12213 69th" , "Portland", "98404")),
+							new EmployeeDTO("Ku Ku", "Tin", "Management", 21, "male", LocalDate.of(2011, 8, 23), LocalDate.of(2020, 8, 23), 45000.0, new AddressDTO("12213 69th" , "Kent", "99232"))
 				);
 		
 	 empService.saveAll(employees);

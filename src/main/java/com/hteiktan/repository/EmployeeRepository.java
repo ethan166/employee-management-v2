@@ -17,10 +17,10 @@ import com.hteiktan.entity.EmployeeEntity;
 public interface EmployeeRepository extends PagingAndSortingRepository<EmployeeEntity, Integer>  {
 	List<EmployeeEntity> findByfirstname(String name);
 	
-//	Page<EmployeeEntity> findAllBySalary(double salary, Pageable pageable);
-	
-//	@Query("SELECT DISTINCT e.salary FROM Employee e")
-//	List<Double> findDistincySalary();
+	Page<EmployeeEntity> findAllBySalary(double salary, Pageable pageable);
+
+	@Query("SELECT DISTINCT e.salary FROM EmployeeEntity e")
+	List<Double> findDistincySalary();
 }
 
 

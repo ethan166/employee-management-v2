@@ -1,18 +1,33 @@
 package com.hteiktan.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import com.hteiktan.dto.AddressDTO;
 import com.hteiktan.dto.EmployeeDTO;
 import com.hteiktan.entity.AddressEntity;
 import com.hteiktan.entity.EmployeeEntity;
 import com.hteiktan.repository.EmployeeRepository;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 @Service("employeeService")
@@ -74,6 +89,41 @@ public class EmployeeServiceImpl implements EmployeeService {
 			empList.add(empDTO);
 		}
 		return empList;
+	}
+	@Override
+	public Page<EmployeeEntity> findAll(Pageable requestedPage) {
+		return this.employeeDAO.findAll(requestedPage);
+	
+	}
+	@Override
+	public Page<EmployeeEntity> findAllBySalary(double salary, Pageable requetedPage) {
+		
+		return this.employeeDAO.findAllBySalary(salary, requetedPage);
+	}
+	
+	@Override
+	public List<Double> getListSalaries() {
+		
+		return this.employeeDAO.findDistincySalary();
+	}
+	@Override
+	public String exportReport(String reportFormat) throws JRException, FileNotFoundException {
+		List<EmployeeEntity> employees = (List<EmployeeEntity>) employeeDAO.findAll();
+		String path = "/Users/Ethan/Downloads";
+		//load file and compile it
+			File file = ResourceUtils.getFile("classpath:employees.jrxml");
+			JasperReport jasperReport =  JasperCompileManager.compileReport(file.getAbsolutePath());
+			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(employees);
+			Map<String, Object> parameters = new HashMap<>();
+			parameters.put("createdBy", "Ethan");
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+			if(reportFormat.equalsIgnoreCase("html")) {
+				JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "/employees.html");
+			}
+			if(reportFormat.equalsIgnoreCase("pdf")) {
+				JasperExportManager.exportReportToPdfFile(jasperPrint, path + "/employees.pdf");
+			}
+			return "report generated in path: " + path;
 	}
 	
 //	Pageable requestedPage = PageRequest.of(0, 5);
